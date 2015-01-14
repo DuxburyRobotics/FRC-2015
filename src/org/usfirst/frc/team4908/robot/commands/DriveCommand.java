@@ -13,9 +13,7 @@ public class DriveCommand extends Command {
 	}
 
 	@Override
-	protected void initialize() {
-		
-	}
+	protected void initialize() { }
 
 	@Override
 	protected void execute() {
@@ -29,11 +27,11 @@ public class DriveCommand extends Command {
 
 	@Override
 	protected void end() {
-		
+		Robot.driveTrain.stopDriving();
 	}
 
 	@Override
 	protected void interrupted() {
-		
+		end();
 	}
 }
