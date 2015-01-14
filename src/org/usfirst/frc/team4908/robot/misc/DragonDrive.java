@@ -6,9 +6,12 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 
 public class DragonDrive extends RobotDrive {
+	
+	private InertiaAccumulator ina;
 
 	public DragonDrive(SpeedController frontLeftMotor, SpeedController rearLeftMotor, SpeedController frontRightMotor, SpeedController rearRightMotor) {
 		super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
+		ina = new InertiaAccumulator(Constants.INERTIAL_MULTIPLIER);
 	}
 	
 	/**
@@ -20,5 +23,18 @@ public class DragonDrive extends RobotDrive {
 		double driveSpeed = joystick.getAxis(AxisType.kY);
 		
 		arcadeDrive(driveSpeed, rotationalSpeed);
+	}
+	
+	/**
+	 * Test of negative inertia system. In theory should make robot control more intuitive
+	 * by reducing or removing inertia-caused turning after the driver lets go of the 
+	 * joystick. The INERTIAL_MULTIPLIER constant should be tweaked to whatever feels best.
+	 * @param joystick
+	 */
+	public void negativeIntertiaDrive(final Joystick joystick) {
+		double rotationalSpeed = joystick.getAxis(AxisType.kTwist);
+		double driveSpeed = joystick.getAxis(AxisType.kY);
+		
+		arcadeDrive(driveSpeed, ina.adjustRotationalSpeed(rotationalSpeed));
 	}
 }
