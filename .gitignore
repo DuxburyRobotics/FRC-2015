@@ -1,7 +1,2 @@
-#Exclude evreything
 /*
-
-#Allow ONLY the following. 
-!/src/**
-!.gitignore
-!README.md
+!/src
