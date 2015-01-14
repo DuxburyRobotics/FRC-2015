@@ -21,7 +21,7 @@ public class FullJoystick {
     
     public FullJoystick(final Joystick joystick) {
         this.joystick = joystick;
-        this.buttons = new ArrayList<>();
+        this.buttons = new ArrayList<SmartButton>();
     }
     
     public Joystick getJoystick() {
