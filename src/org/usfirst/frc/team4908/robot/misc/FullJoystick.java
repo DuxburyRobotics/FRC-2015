@@ -1,22 +1,27 @@
 package org.usfirst.frc.team4908.robot.misc;
 
+import java.util.ArrayList;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Creates and initializes Joysticks and their buttons
+ * Creates and initializes a Joystick and its buttons
  */
 public class FullJoystick {
+	
+	public enum ButtonState {
+		PRESSED,
+		RELEASED,
+		HELD
+	}
 
-    public static final int BUTTON_COUNT = 20;
-    
-    private final Joystick joystick;
-    private final JoystickButton[] buttons;
+    private Joystick joystick;
+    private ArrayList<SmartButton> buttons;
     
     public FullJoystick(final Joystick joystick) {
         this.joystick = joystick;
-        buttons = new JoystickButton[BUTTON_COUNT];
+        this.buttons = new ArrayList<>();
     }
     
     public Joystick getJoystick() {
@@ -24,73 +29,38 @@ public class FullJoystick {
     }
     
     /**
-     *getButton returns a button at a position. 
-     * @param pos the position of the button 0 - (amountOfButtons - 1)
-     * @return JoystickButton at the position requested
+     * Set's a command to a certain button on the joystick
+     * 
+     * @param buttonIndex - the number on the joystick referring to the button
+     * @param command - the command you want the button to run
+     * @param state - which state the button must be in to trigger action
      */
-    public JoystickButton getButton(final int pos) {
-        if(buttons[pos] == null) {
-            System.err.println("Button[" + pos + "] is null, creating now!");
-            System.err.println("Button should be preloaded!");
-            
-            createButton(pos);
-        }
-    
-        return buttons[pos];
-    }
-    
-    /**
-     * @param buttonNumber  -the number on the joystick refering to the button
-     * @param command -the command you want the button to run
-     * @param option -int 0 = whenPressed, 1 = whenReleased, 2 = whileHeld, default whileHeld
-     * @param pos - defines where the button is stored in the internal array
-     */
-    public void createButton(final int buttonNumber, final int pos, final Command command, final int option) {
-        JoystickButton jb = new JoystickButton(joystick, buttonNumber);
-        
-        //assign the command to the button with appropriate action listener
-        /*
-        switch (option) {
-            case Constants.ACTION_PRESSED:
-                jb.whenPressed(command);
+    public void setButton(final int buttonIndex, final Command command, final ButtonState state) {
+    	SmartButton button = null;
+    	for (SmartButton b : buttons) {
+    		if (b.getButtonIndex() == buttonIndex) {
+    			button = b;
+    			break;
+    		}
+    	}
+    	
+    	if (button == null) {
+    		button = new SmartButton(joystick, buttonIndex);
+            buttons.add(button);
+    	}
+    	
+        switch (state) {
+            case PRESSED:
+                button.whenPressed(command);
                 break;
-            case Constants.ACTION_RELEASED:
-                jb.whenReleased(command);
+            case RELEASED:
+                button.whenReleased(command);
                 break;
-            case Constants.ACTION_HELD:
-                jb.whileHeld(command);
+            case HELD:
+                button.whileHeld(command);
                 break;
             default:
-                jb.whileHeld(command);
-        }
-        */
-        
-        checkCreation(pos);
-        buttons[pos] = jb;
-    }
-    
-    /**
-     *  This method will cause logic error
-     *  (example value pos = 1, trigger) it will assign the button correctly
-     *  to the Joystick but on buttons[] it will be at index 1. being the lowest
-     *  value button, the pos should be 0.
-     * 
-     * @param pos int value for the position of the button see logic error above
-     */
-    public void createButton(int pos) {
-        checkCreation(pos);
-        buttons[pos] = new JoystickButton(joystick, pos);
-    }
-    
-    public void createButton(int location, int pos) {
-        checkCreation(location);
-        buttons[location] = new JoystickButton(joystick, pos);
-    }
-    
-    public boolean checkCreation(int pos) {
-        if(buttons[pos] != null)
-            System.err.println("Overrides Button ...");
-        
-        return true;
+                button.whileHeld(command);
+        }        
     }
 }
