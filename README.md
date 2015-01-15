@@ -6,9 +6,9 @@
 
 ### GIT Workflow
 
-The following commands should be entered into
-the GIT Bash program.
-Anything inside of <> (ie <branch_name>) is a custom string.
+	The following commands should be entered into
+	the GIT Bash program.
+	Anything inside of <> (ie <branch_name>) is a custom string.
 
 #### Getting the latest version of the stable code for the first time:
 
@@ -17,7 +17,7 @@ Anything inside of <> (ie <branch_name>) is a custom string.
 		Create an empty folder somewhere on your computer
 
 			- cd <new folder>
-			- git clone https://<your bitbucket username>@bitbucket.org/duxburyrobotics/frc-2015.git
+			- git clone https://<your bitbucket username>@bitbucket.org/duxburyrobotics/frc_2015.git
 			- cd frc-2015
 
 #### To obtain the latest version of the code and update your local copy:
