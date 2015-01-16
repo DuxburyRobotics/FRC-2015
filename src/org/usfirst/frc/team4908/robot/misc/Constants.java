@@ -12,9 +12,9 @@ public class Constants {
     public static final double DRIVE_SENSITIVITY = 		0.2;
     public static final double DRIVE_MIN_POWER =	 	0.55;
     public static final double DRIVE_MAX_POWER = 		1.0;
-    public static final int INERTIAL_MULTIPLIER = 	5;
+    public static final int INERTIAL_MULTIPLIER = 		5;
     
     /* Joystick constants */
-    public static final int JOYSTICK_RIGHT = 			1;
-    public static final int JOYSTICK_LEFT =				2;
+    public static final int JOYSTICK_RIGHT = 			0;
+    public static final int JOYSTICK_LEFT =				1;
 }
