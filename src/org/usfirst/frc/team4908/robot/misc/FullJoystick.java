@@ -59,8 +59,6 @@ public class FullJoystick {
             case HELD:
                 button.whileHeld(command);
                 break;
-            default:
-                button.whileHeld(command);
         }        
     }
 }
