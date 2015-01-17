@@ -61,4 +61,13 @@ public class FullJoystick {
                 break;
         }        
     }
+    
+    public SmartButton getButton(int index) {
+    	for (SmartButton button : buttons) {
+    		if (button.getButtonIndex() == index)
+    			return button;
+    	}
+    	
+    	return null;
+    }
 }

@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
+
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4908.robot.subsystems.TestElevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,6 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
+	public static TestElevator elevator;
 
     private Command autonomousCommand;
 
@@ -35,6 +38,7 @@ public class Robot extends IterativeRobot {
     
     public void initSubsystems() {
     	driveTrain = new DriveTrain();
+    	elevator = new TestElevator();
     }
 	
 	public void disabledPeriodic() {
@@ -61,8 +65,6 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) 
         	autonomousCommand.cancel();
-        
-        System.out.println("Starting TELEOP");
     }
 
     /**
