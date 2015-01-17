@@ -22,7 +22,7 @@ public class DragonDrive extends RobotDrive {
 		double rotationalSpeed = -joystick.getAxis(AxisType.kTwist);
 		double driveSpeed = -joystick.getAxis(AxisType.kY);
 		
-		arcadeDrive(driveSpeed, rotationalSpeed);
+		arcadeDrive(driveSpeed*0.5, rotationalSpeed*0.5);
 	}
 	
 	/**
