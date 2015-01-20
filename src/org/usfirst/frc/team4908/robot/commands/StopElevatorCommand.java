@@ -12,7 +12,9 @@ public class StopElevatorCommand extends Command {
 	}
 
 	@Override
-	protected void execute() { }
+	protected void execute() { 
+		
+	}
 
 	@Override
 	protected boolean isFinished() {
@@ -20,7 +22,9 @@ public class StopElevatorCommand extends Command {
 	}
 
 	@Override
-	protected void end() { }
+	protected void end() { 
+		
+	}
 
 	@Override
 	protected void interrupted() {

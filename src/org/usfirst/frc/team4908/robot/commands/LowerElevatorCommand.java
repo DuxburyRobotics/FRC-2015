@@ -13,7 +13,9 @@ public class LowerElevatorCommand extends Command {
 	}
 
 	@Override
-	protected void execute() { }
+	protected void execute() { 
+		
+	}
 
 	@Override
 	protected boolean isFinished() {

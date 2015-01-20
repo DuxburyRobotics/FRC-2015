@@ -17,8 +17,6 @@ public class Constants {
     public static final int JOYSTICK_RIGHT = 			0;
     public static final int JOYSTICK_LEFT =				1;
     
-    
-    
     /* Elevator */
     public static final int ELEVATOR_DRIVE_MOTOR_PORT =	4;
     
