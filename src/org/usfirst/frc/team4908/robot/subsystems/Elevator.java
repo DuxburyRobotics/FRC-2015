@@ -15,7 +15,7 @@ public class Elevator extends PIDSubsystem {
 	
 	public Elevator() {
 		super("Elevator", 0.0, 0.0, 0.0);
-		elevatorDrive = new Talon(Constants.ELEVATOR_DRIVE_MOTOR_PORT);
+		elevatorDrive = new Talon(9);//Constants.ELEVATOR_DRIVE_MOTOR_PORT);
 		elevatorTracker = new Encoder(
 				Constants.ENCODER_A, 
 				Constants.ENCODER_B, 

@@ -14,6 +14,11 @@ public class DragonDrive extends RobotDrive {
 		ina = new InertiaAccumulator(Constants.INERTIAL_MULTIPLIER);
 	}
 	
+	public DragonDrive(SpeedController front, SpeedController back) {		
+		super(front, back);
+		ina = new InertiaAccumulator(Constants.INERTIAL_MULTIPLIER);
+	}
+	
 	/**
 	 * Single joystick drive that uses the joystick's twist axis to determine rotation
 	 * @param joystick - Joystick to read from

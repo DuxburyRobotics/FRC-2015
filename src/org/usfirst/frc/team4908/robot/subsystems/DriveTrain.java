@@ -5,31 +5,32 @@ import org.usfirst.frc.team4908.robot.misc.Constants;
 import org.usfirst.frc.team4908.robot.misc.DragonDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
 
 	private final DragonDrive robotDrive;
-	private final Talon frontLeftMotor;
-	private final Talon backLeftMotor;
-	private final Talon frontRightMotor;
-	private final Talon backRightMotor;
+	private final VictorSP leftMotor;
+	private final VictorSP rightMotor;
 	
 	public DriveTrain() {
-		frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
-		backLeftMotor = new Talon(Constants.BACK_LEFT_MOTOR_PORT);
-		frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
-		backRightMotor = new Talon(Constants.BACK_RIGHT_MOTOR_PORT);
+		leftMotor = new VictorSP(Constants.FRONT_LEFT_MOTOR_PORT);
+		rightMotor = new VictorSP(Constants.FRONT_RIGHT_MOTOR_PORT);
 		
-		robotDrive = new DragonDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+		//frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
+		//backLeftMotor = new Talon(Constants.BACK_LEFT_MOTOR_PORT);
+		//frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
+		//backRightMotor = new Talon(Constants.BACK_RIGHT_MOTOR_PORT);
+		
+		robotDrive = new DragonDrive(leftMotor, rightMotor);	//new DragonDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 		robotDrive.setMaxOutput(Constants.DRIVE_MAX_POWER);
 		robotDrive.setSensitivity(Constants.DRIVE_SENSITIVITY);
 	}
 	
 	public void driveTeleop(final Joystick joystick) {
 		robotDrive.arcadeTwistDrive(joystick);
-		//negativeIntertiaDrive(joystick);//arcadeTwistDrive(joystick);
+		//negativeIntertiaDrive(joystick);//arca
 	}
 	
 	public void stopDriving() {
