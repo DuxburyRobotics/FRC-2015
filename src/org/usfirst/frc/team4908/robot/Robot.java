@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
 
+
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team4908.robot.subsystems.Elevator;
 import org.usfirst.frc.team4908.robot.subsystems.TestElevator;
 
 /**
@@ -22,7 +24,8 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
-	public static TestElevator elevator;
+//	public static TestElevator elevator;
+	public static Elevator elevator;
 
     private Command autonomousCommand;
 
@@ -38,7 +41,7 @@ public class Robot extends IterativeRobot {
     
     public void initSubsystems() {
     	driveTrain = new DriveTrain();
-    	elevator = new TestElevator();
+    	elevator = new Elevator();
     }
 	
 	public void disabledPeriodic() {

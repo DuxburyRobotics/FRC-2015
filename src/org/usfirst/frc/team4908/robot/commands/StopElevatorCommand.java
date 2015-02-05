@@ -8,7 +8,7 @@ public class StopElevatorCommand extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.elevator.stopMotor();
+		//Robot.elevator.stopMotor();
 	}
 
 	@Override

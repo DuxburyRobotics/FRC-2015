@@ -9,7 +9,7 @@ public class RaiseElevatorCommand extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.elevator.setMotor(1.0);
+		//Robot.elevator.setMotor(1.0);
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class RaiseElevatorCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.elevator.stopMotor();
+		//Robot.elevator.stopMotor();
 	}
 
 	@Override

@@ -1,34 +1,41 @@
 package org.usfirst.frc.team4908.robot.commands;
 
-import org.usfirst.frc.team4908.robot.OI;
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LowerElevatorCommand extends Command {
+public class PIDTestCommand extends Command {
 
+	private double position;
+	
+	public PIDTestCommand(double position)
+	{
+		this.position = position;
+	}
+	
 	@Override
 	protected void initialize() {
-		//Robot.elevator.setMotor(-1.0);
+		Robot.elevator.setSetpoint(position);
 	}
 
 	@Override
-	protected void execute() { 
+	protected void execute() {
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return !OI.RIGHT_STICK.getButton(2).get();
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		//Robot.elevator.stopMotor();
+		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
+		
 	}
+
 }
