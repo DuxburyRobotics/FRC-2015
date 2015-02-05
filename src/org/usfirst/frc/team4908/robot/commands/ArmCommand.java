@@ -4,18 +4,19 @@ import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class PIDTestCommand extends Command {
-
-	private double position;
+public class ArmCommand extends Command {
 	
-	public PIDTestCommand(double position)
-	{
-		this.position = position;
+	private double power;
+	
+	public ArmCommand(double power) {
+		super("Intake");
+		this.power = power;
+		requires(Robot.intake);
 	}
-	
+
 	@Override
 	protected void initialize() {
-		Robot.elevator.setSetpoint(position);
+		Robot.intake.rollIntake(power);
 	}
 
 	@Override
@@ -23,12 +24,12 @@ public class PIDTestCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.elevator.onTarget();
+		return false;
 	}
 
 	@Override
 	protected void end() {
-		Robot.elevator.killElevator();
+		Robot.intake.stop();
 	}
 
 	@Override

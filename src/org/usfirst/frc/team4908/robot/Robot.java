@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
 
+
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
+import org.usfirst.frc.team4908.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +25,8 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain driveTrain;
-//	public static TestElevator elevator;
 	public static Elevator elevator;
+	public static Intake intake;
 
     private Command autonomousCommand;
 
@@ -41,6 +43,7 @@ public class Robot extends IterativeRobot {
     public void initSubsystems() {
     	driveTrain = new DriveTrain();
     	elevator = new Elevator();
+    	intake = new Intake();
     }
 	
 	public void disabledPeriodic() {

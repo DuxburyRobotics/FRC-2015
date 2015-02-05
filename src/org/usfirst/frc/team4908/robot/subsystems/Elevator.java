@@ -13,7 +13,7 @@ public class Elevator extends PIDSubsystem {
 	private final Encoder elevatorTracker;
 	
 	public Elevator() {
-		super("Elevator", 0.0, 0.0, 0.0);
+		super("Elevator", 0.2, 0.0, 0.0);
 		elevatorDrive1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
 		elevatorDrive2 = new VictorSP(Constants.ELEVATOR_DRIVE_RMOTOR_PORT);
 		elevatorTracker = new Encoder(
@@ -21,7 +21,7 @@ public class Elevator extends PIDSubsystem {
 				Constants.ENCODER_B, 
 				false,
 				Encoder.EncodingType.k4X);
-		elevatorTracker.reset();
+		elevatorTracker.reset();		
 	}
 
 	@Override
@@ -34,9 +34,12 @@ public class Elevator extends PIDSubsystem {
 		elevatorDrive1.pidWrite(output);
 		elevatorDrive2.pidWrite(output);
 	}
+	
+	public void killElevator() {
+		elevatorDrive1.set(0.0);
+		elevatorDrive2.set(0.0);
+	}
 
 	@Override
-	protected void initDefaultCommand() {
-		
-	}
+	protected void initDefaultCommand() { }
 }
