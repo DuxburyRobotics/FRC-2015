@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
-import org.usfirst.frc.team4908.robot.subsystems.TestElevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the

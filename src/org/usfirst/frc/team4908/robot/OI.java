@@ -1,9 +1,6 @@
 package org.usfirst.frc.team4908.robot;
 
-import org.usfirst.frc.team4908.robot.commands.LowerElevatorCommand;
 import org.usfirst.frc.team4908.robot.commands.PIDTestCommand;
-import org.usfirst.frc.team4908.robot.commands.RaiseElevatorCommand;
-import org.usfirst.frc.team4908.robot.commands.StopElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 import org.usfirst.frc.team4908.robot.misc.FullJoystick;
 import org.usfirst.frc.team4908.robot.misc.FullJoystick.ButtonState;

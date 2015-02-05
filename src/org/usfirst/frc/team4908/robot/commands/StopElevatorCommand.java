@@ -1,7 +1,5 @@
 package org.usfirst.frc.team4908.robot.commands;
 
-import org.usfirst.frc.team4908.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StopElevatorCommand extends Command {
