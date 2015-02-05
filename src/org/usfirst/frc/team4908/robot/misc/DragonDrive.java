@@ -27,14 +27,13 @@ public class DragonDrive extends RobotDrive {
 		double rotationalSpeed = -joystick.getAxis(AxisType.kTwist);
 		double driveSpeed = -joystick.getAxis(AxisType.kY);
 		
-		arcadeDrive(driveSpeed*0.5, rotationalSpeed*0.5);
-	}
+		arcadeDrive(driveSpeed*0.75, rotationalSpeed*0.75);
+	} 
 	
 	/**
 	 * Test of negative inertia system. In theory should make robot control more intuitive
 	 * by reducing or removing inertia-caused turning after the driver lets go of the 
 	 * joystick. The INERTIAL_MULTIPLIER constant should be tweaked to whatever feels best.
-	 * @param joystick
 	 */
 	public void negativeIntertiaDrive(final Joystick joystick) {
 		double rotationalSpeed = -joystick.getAxis(AxisType.kTwist);

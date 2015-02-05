@@ -16,8 +16,8 @@ public class TestElevator extends Subsystem {
 	}
 	
 	public void setMotor(double val) {
-		leftMotor.set(val);
-		rightMotor.set(val);
+		leftMotor.set(-val);
+		rightMotor.set(-val);
 	}
 	
 	public void stopMotor() {
