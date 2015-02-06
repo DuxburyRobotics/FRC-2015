@@ -1,26 +1,26 @@
 package org.usfirst.frc.team4908.robot.commands;
 
+import org.usfirst.frc.team4908.robot.OI;
 import org.usfirst.frc.team4908.robot.Robot;
 
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ArmCommand extends Command {
+public class ArmControlCommand extends Command {
 	
-	private double power;
 	
-	public ArmCommand(double power) {
+	public ArmControlCommand() {
 		super("Intake");
-		this.power = power;
 		requires(Robot.intake);
 	}
 
 	@Override
-	protected void initialize() {
-		Robot.intake.rollIntake(power);
-	}
+	protected void initialize() { }
 
 	@Override
-	protected void execute() { }
+	protected void execute() {
+		Robot.intake.rollIntakeWheels(OI.LEFT_STICK.getJoystick().getAxis(AxisType.kY));
+	}
 
 	@Override
 	protected boolean isFinished() {
@@ -29,7 +29,7 @@ public class ArmCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.intake.stop();
+		Robot.intake.stopArmMotors();
 	}
 
 	@Override

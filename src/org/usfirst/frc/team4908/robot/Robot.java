@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static Intake intake;
 
+	//TODO: Replace with actual autonomous command
     private Command autonomousCommand;
 
     /**
@@ -71,8 +72,8 @@ public class Robot extends IterativeRobot {
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
-    public void disabledInit(){
-
+    public void disabledInit() {
+    	//TODO: Lower elevator to ground
     }
 
     /**

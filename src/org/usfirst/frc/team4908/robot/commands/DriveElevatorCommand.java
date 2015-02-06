@@ -1,10 +1,21 @@
 package org.usfirst.frc.team4908.robot.commands;
 
 import org.usfirst.frc.team4908.robot.OI;
+import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RaiseElevatorCommand extends Command {
+public class DriveElevatorCommand extends Command {
+	
+	//BROKEN CLASS IGNORE FOR NOW
+	
+	private double power;
+	
+	public DriveElevatorCommand(double power) {
+		super("DriveElevator");
+		this.power = power;
+		requires(Robot.elevator);
+	}
 
 	@Override
 	protected void initialize() {

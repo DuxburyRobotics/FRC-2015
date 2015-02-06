@@ -59,7 +59,7 @@ public class FullJoystick {
             case HELD:
                 button.whileHeld(command);
                 break;
-        }        
+        }  
     }
     
     public SmartButton getButton(int index) {
