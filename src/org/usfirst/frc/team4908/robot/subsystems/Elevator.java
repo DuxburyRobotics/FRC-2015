@@ -7,37 +7,42 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class Elevator extends PIDSubsystem {
+	
+	//TODO: We need two limit switches at either end of the lift to zero out the encoders
 
-	private VictorSP elevatorDrive1;
-	private VictorSP elevatorDrive2;
-	private final Encoder elevatorTracker;
+	private VictorSP elevatorDriveMotor1;
+	private VictorSP elevatorDriveMotor2;
+	private final Encoder elevatorEncoder;
 	
 	public Elevator() {
 		super("Elevator", 0.2, 0.0, 0.0);
-		elevatorDrive1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
-		elevatorDrive2 = new VictorSP(Constants.ELEVATOR_DRIVE_RMOTOR_PORT);
-		elevatorTracker = new Encoder(
+		
+		elevatorDriveMotor1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
+		elevatorDriveMotor2 = new VictorSP(Constants.ELEVATOR_DRIVE_RMOTOR_PORT);
+		
+		elevatorEncoder = new Encoder(
 				Constants.ENCODER_A, 
 				Constants.ENCODER_B, 
 				false,
 				Encoder.EncodingType.k4X);
-		elevatorTracker.reset();		
+		
+		elevatorEncoder.reset();		
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		return elevatorTracker.getDistance();
+		return elevatorEncoder.getDistance();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		elevatorDrive1.pidWrite(output);
-		elevatorDrive2.pidWrite(output);
+		elevatorDriveMotor1.pidWrite(output);
+		elevatorDriveMotor2.pidWrite(output);
 	}
 	
 	public void killElevator() {
-		elevatorDrive1.set(0.0);
-		elevatorDrive2.set(0.0);
+		elevatorDriveMotor1.set(0.0);
+		elevatorDriveMotor2.set(0.0);
 	}
 
 	@Override

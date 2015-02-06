@@ -8,9 +8,10 @@ public class PIDTestCommand extends Command {
 
 	private double position;
 	
-	public PIDTestCommand(double position)
-	{
+	public PIDTestCommand(double position) {
+		super("PID Test");
 		this.position = position;
+		requires(Robot.elevator);
 	}
 	
 	@Override
@@ -23,7 +24,7 @@ public class PIDTestCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.elevator.onTarget();
+		return false; //Robot.elevator.onTarget();
 	}
 
 	@Override

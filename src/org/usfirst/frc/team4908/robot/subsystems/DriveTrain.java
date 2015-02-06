@@ -10,31 +10,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
 
-	private final DragonDrive robotDrive;
-	private final VictorSP leftMotor;
-	private final VictorSP rightMotor;
+	private final DragonDrive dragonDrive;
+	private final VictorSP leftDriveMotor;
+	private final VictorSP rightDriveMotor;
 	
 	public DriveTrain() {
-		leftMotor = new VictorSP(Constants.FRONT_LEFT_MOTOR_PORT);
-		rightMotor = new VictorSP(Constants.FRONT_RIGHT_MOTOR_PORT);
+		leftDriveMotor = new VictorSP(Constants.LEFT_MOTOR_PORT);
+		rightDriveMotor = new VictorSP(Constants.RIGHT_MOTOR_PORT);
 		
-		//frontLeftMotor = new Talon(Constants.FRONT_LEFT_MOTOR_PORT);
-		//backLeftMotor = new Talon(Constants.BACK_LEFT_MOTOR_PORT);
-		//frontRightMotor = new Talon(Constants.FRONT_RIGHT_MOTOR_PORT);
-		//backRightMotor = new Talon(Constants.BACK_RIGHT_MOTOR_PORT);
-		
-		robotDrive = new DragonDrive(leftMotor, rightMotor);	//new DragonDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
-		robotDrive.setMaxOutput(Constants.DRIVE_MAX_POWER);
-		robotDrive.setSensitivity(Constants.DRIVE_SENSITIVITY);
+		dragonDrive = new DragonDrive(leftDriveMotor, rightDriveMotor);
+		dragonDrive.setMaxOutput(Constants.DRIVE_MAX_POWER);
+		dragonDrive.setSensitivity(Constants.DRIVE_SENSITIVITY);
 	}
 	
-	public void driveTeleop(final Joystick joystick) {
-		robotDrive.arcadeTwistDrive(joystick);
+	public void driveTeleop(Joystick joystick) {
+		dragonDrive.arcadeTwistDrive(joystick);
 		//negativeIntertiaDrive(joystick);//arca
 	}
 	
 	public void stopDriving() {
-		robotDrive.setLeftRightMotorOutputs(0.0, 0.0);
+		dragonDrive.setLeftRightMotorOutputs(0.0, 0.0);
 	}
 	
 	@Override
