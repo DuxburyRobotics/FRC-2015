@@ -36,12 +36,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		
-		initSubsystems();
-    }
-    
-    public void initSubsystems() {
-    	driveTrain = new DriveTrain();
+		driveTrain = new DriveTrain();
     	elevator = new Elevator();
     	intake = new Intake();
     }

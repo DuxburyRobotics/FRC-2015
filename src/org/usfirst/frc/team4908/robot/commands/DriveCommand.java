@@ -8,14 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveCommand extends Command {
 	
 	public DriveCommand() {
-		super("Drive Command");
+		super("Drive");
 		requires(Robot.driveTrain);
 	}
 
 	@Override
-	protected void initialize() { 
-		
-	}
+	protected void initialize() { }
 
 	@Override
 	protected void execute() {
