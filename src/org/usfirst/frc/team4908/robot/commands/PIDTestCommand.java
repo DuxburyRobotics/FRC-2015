@@ -33,7 +33,7 @@ public class PIDTestCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.elevator.killElevator();
+		Robot.elevator.stopElevator();
 		Robot.elevator.disable();
 	}
 

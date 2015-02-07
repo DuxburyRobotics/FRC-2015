@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 public class Intake extends Subsystem {
 
-	private VictorSP leftArmMotor;
-	private VictorSP rightArmMotor;
+	private final VictorSP leftArmMotor;
+	private final VictorSP rightArmMotor;
 	
 	public Intake() {
 		super("Intake");
+		
 		leftArmMotor = new VictorSP(Constants.LEFT_ARM_MOTOR_PORT);
 		rightArmMotor = new VictorSP(Constants.RIGHT_ARM_MOTOR_PORT);
 	}

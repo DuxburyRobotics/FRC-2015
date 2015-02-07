@@ -9,6 +9,7 @@ public class DriveCommand extends Command {
 	
 	public DriveCommand() {
 		super("Drive");
+		
 		requires(Robot.driveTrain);
 	}
 
