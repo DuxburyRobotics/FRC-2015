@@ -5,10 +5,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-
-
-
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
@@ -36,10 +33,12 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
-		driveTrain = new DriveTrain();
+    	
+    	driveTrain = new DriveTrain();
     	elevator = new Elevator();
     	intake = new Intake();
+		oi = new OI();
+		
     }
 	
 	public void disabledPeriodic() {
@@ -66,6 +65,9 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) 
         	autonomousCommand.cancel();
+        
+        elevator.resetElevator();
+		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.getDistance());
     }
 
     /**

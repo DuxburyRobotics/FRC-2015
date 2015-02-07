@@ -29,7 +29,7 @@ public class OI {
 //		RIGHT_STICK.setButton(1, new StopElevatorCommand(), ButtonState.RELEASED);
 //		RIGHT_STICK.setButton(2, new StopElevatorCommand(), ButtonState.RELEASED);
 		
-		RIGHT_STICK.setButton(1, new PIDTestCommand(1.0), ButtonState.PRESSED);
+		RIGHT_STICK.setButton(1, new PIDTestCommand(800), ButtonState.PRESSED);
 		RIGHT_STICK.setButton(2, new PIDTestCommand(0.0), ButtonState.PRESSED);
 	}
 }

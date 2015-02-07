@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ArmControlCommand extends Command {
 	
-	
 	public ArmControlCommand() {
 		super("Intake");
 		requires(Robot.intake);

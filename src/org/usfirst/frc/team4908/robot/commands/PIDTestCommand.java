@@ -3,6 +3,7 @@ package org.usfirst.frc.team4908.robot.commands;
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDTestCommand extends Command {
 
@@ -17,10 +18,13 @@ public class PIDTestCommand extends Command {
 	@Override
 	protected void initialize() {
 		Robot.elevator.setSetpoint(position);
+		Robot.elevator.enable();
 	}
 
 	@Override
-	protected void execute() { }
+	protected void execute() {
+		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.getDistance());
+	}
 
 	@Override
 	protected boolean isFinished() {
@@ -30,6 +34,7 @@ public class PIDTestCommand extends Command {
 	@Override
 	protected void end() {
 		Robot.elevator.killElevator();
+		Robot.elevator.disable();
 	}
 
 	@Override

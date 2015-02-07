@@ -13,7 +13,6 @@ public class Intake extends Subsystem {
 	
 	public Intake() {
 		super("Intake");
-		
 		leftArmMotor = new VictorSP(Constants.LEFT_ARM_MOTOR_PORT);
 		rightArmMotor = new VictorSP(Constants.RIGHT_ARM_MOTOR_PORT);
 	}

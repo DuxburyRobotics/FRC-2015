@@ -23,6 +23,6 @@ public class Constants {
     public static final int ENCODER_B =	1;
     
     //Intake
-    public static final int LEFT_ARM_MOTOR_PORT = 6;
-    public static final int RIGHT_ARM_MOTOR_PORT = 7;
+    public static final int LEFT_ARM_MOTOR_PORT = 0;
+    public static final int RIGHT_ARM_MOTOR_PORT = 1;
 }
