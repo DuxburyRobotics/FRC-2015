@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team4908.robot.commands.ResetElevatorAction;
+import org.usfirst.frc.team4908.robot.commands.ZeroElevatorCommand;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
 import org.usfirst.frc.team4908.robot.subsystems.Intake;
@@ -65,7 +67,10 @@ public class Robot extends IterativeRobot {
         	autonomousCommand.cancel();
         
         elevator.resetElevator();
-		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.getDistance());
+        //ZeroElevatorCommand zero = new ZeroElevatorCommand();
+        //zero.start();
+        ResetElevatorAction reset = new ResetElevatorAction();
+        reset.start();
     }
 
     /**

@@ -23,7 +23,7 @@ public class ZeroElevatorCommand extends Command {
 	@Override
 	protected void execute() { 
 		SmartDashboard.putBoolean("Switch", Robot.elevator.isZeroed());
-		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.get());
+		SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
 	}
 
 	@Override
@@ -33,12 +33,10 @@ public class ZeroElevatorCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.elevator.stopElevator();
+		Robot.elevator.brakeElevator();
 		if (Robot.elevator.isZeroed()) {
 			Robot.elevator.resetElevator();
 		}
-		
-		cancel();
 	}
 
 	@Override

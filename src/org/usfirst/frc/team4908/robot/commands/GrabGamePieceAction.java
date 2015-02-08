@@ -11,7 +11,7 @@ public class GrabGamePieceAction extends CommandGroup {
 		
 		requires(Robot.elevator);
 		
-		addSequential(new PIDTestCommand(0.0));
+		addSequential(new LowerElevatorAction());
 		addSequential(new PIDTestCommand(400.0));
 	}
 }

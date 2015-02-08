@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
+import org.usfirst.frc.team4908.robot.commands.BrakeElevatorCommand;
+import org.usfirst.frc.team4908.robot.commands.LowerElevatorAction;
 import org.usfirst.frc.team4908.robot.commands.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.commands.ZeroElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
@@ -19,10 +21,9 @@ public class Elevator extends PIDSubsystem {
 	private final DigitalInput bottomLimitSwitch;
 	
 	public Elevator() {
-		super("Elevator", 0.001, 0.0001, 0.0);		//TODO: Tweak these values
+		super("Elevator", 0.005, 0.0001, 0.0);		//TODO: Tweak these values
 		
-		this.setAbsoluteTolerance(15);
-		//setPercentTolerance(10.0);	//TODO: Tweak this value
+		this.setAbsoluteTolerance(5);
 		setOutputRange(-1.0, 1.0);
 		
 		elevatorDriveMotor1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
@@ -56,7 +57,7 @@ public class Elevator extends PIDSubsystem {
 		elevatorDriveMotor2.set(power);
 	}
 	
-	public void stopElevator() {
+	public void brakeElevator() {
 		elevatorDriveMotor1.set(0.0);
 		elevatorDriveMotor2.set(0.0);
 	}
@@ -67,7 +68,6 @@ public class Elevator extends PIDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new ResetElevatorAction());
-		setDefaultCommand(new ZeroElevatorCommand());
+		setDefaultCommand(new BrakeElevatorCommand());
 	}
 }

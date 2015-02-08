@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class PIDTestCommand extends Command {
 
 	private double position;
+	private boolean alreadyZeroed;
 	
 	public PIDTestCommand(double position) {
 		super("PID Test");
@@ -18,28 +19,32 @@ public class PIDTestCommand extends Command {
 	
 	@Override
 	protected void initialize() {
+		alreadyZeroed = false;
 		Robot.elevator.setSetpoint(position);
 		Robot.elevator.enable();
 	}
 
 	@Override
 	protected void execute() { 
-		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.get());
-		if (Robot.elevator.isZeroed()) {
+		SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
+		SmartDashboard.putNumber("Position", (int)position);
+		if (position == 0.0 && !alreadyZeroed && Robot.elevator.isZeroed()) {
 			Robot.elevator.resetElevator();
+			alreadyZeroed = true;
+			SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.elevator.onTarget();	//TODO: Dependent on how well brake mode works
+		return Robot.elevator.onTarget() || (position == 0.0 && Robot.elevator.isZeroed());	//TODO: Dependent on how well brake mode works
 	}
 
 	@Override
 	protected void end() {
 		Robot.elevator.disable();
-		Robot.elevator.stopElevator();
-		cancel();
+		Robot.elevator.brakeElevator();
+		//cancel();
 	}
 
 	@Override
