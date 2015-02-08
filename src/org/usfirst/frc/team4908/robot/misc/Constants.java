@@ -18,6 +18,9 @@ public class Constants {
     //Elevator
     public static final int ELEVATOR_DRIVE_LMOTOR_PORT = 2;
     public static final int ELEVATOR_DRIVE_RMOTOR_PORT = 3;
+    public static final int ELEVATOR_BOTTOM_LIMIT_PORT = 6;
+    
+    public static final double ELEVATOR_DRIVE_MULTIPLIER = 1.0;
     
     public static final int ENCODER_A =	0;
     public static final int ENCODER_B =	1;

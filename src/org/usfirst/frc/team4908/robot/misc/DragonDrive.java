@@ -25,7 +25,7 @@ public class DragonDrive extends RobotDrive {
 	 */
 	public void arcadeTwistDrive(final Joystick joystick) {
 		double rotationalSpeed = -joystick.getAxis(AxisType.kTwist);
-		double driveSpeed = -joystick.getAxis(AxisType.kY);
+		double driveSpeed = joystick.getAxis(AxisType.kY);
 		
 		arcadeDrive(driveSpeed*0.75, rotationalSpeed*0.75);
 	} 

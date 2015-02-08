@@ -5,40 +5,39 @@ import org.usfirst.frc.team4908.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class PIDTestCommand extends Command {
-
-	private double position;
+public class ZeroElevatorCommand extends Command {
 	
-	public PIDTestCommand(double position) {
-		super("PID Test");
+	public ZeroElevatorCommand() {
+		super("Zero Elevator");
 		
-		this.position = position;
 		requires(Robot.elevator);
 	}
-	
-	@Override
-	protected void initialize() {
-		Robot.elevator.setSetpoint(position);
-		Robot.elevator.enable();
-	}
 
 	@Override
-	protected void execute() { 
-		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.get());
-		if (Robot.elevator.isZeroed()) {
-			Robot.elevator.resetElevator();
+	protected void initialize() {
+		if (!Robot.elevator.isZeroed()) {	//Probably overkill, but I'd rather not take the risk
+			Robot.elevator.setElevatorPower(0.1);	//TODO: Extract to constant
 		}
 	}
 
 	@Override
+	protected void execute() { 
+		SmartDashboard.putBoolean("Switch", Robot.elevator.isZeroed());
+		SmartDashboard.putNumber("Encoder Distance", Robot.elevator.elevatorEncoder.get());
+	}
+
+	@Override
 	protected boolean isFinished() {
-		return Robot.elevator.onTarget();	//TODO: Dependent on how well brake mode works
+		return Robot.elevator.isZeroed();
 	}
 
 	@Override
 	protected void end() {
-		Robot.elevator.disable();
 		Robot.elevator.stopElevator();
+		if (Robot.elevator.isZeroed()) {
+			Robot.elevator.resetElevator();
+		}
+		
 		cancel();
 	}
 
