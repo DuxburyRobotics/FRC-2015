@@ -1,9 +1,5 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
-import org.usfirst.frc.team4908.robot.commands.BrakeElevatorCommand;
-import org.usfirst.frc.team4908.robot.commands.LowerElevatorAction;
-import org.usfirst.frc.team4908.robot.commands.ResetElevatorAction;
-import org.usfirst.frc.team4908.robot.commands.ZeroElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -21,7 +17,7 @@ public class Elevator extends PIDSubsystem {
 	private final DigitalInput bottomLimitSwitch;
 	
 	public Elevator() {
-		super("Elevator", 0.005, 0.0001, 0.0);		//TODO: Tweak these values
+		super("Elevator", 0.007, 0.0001, 0.0);		//TODO: Tweak these values
 		
 		this.setAbsoluteTolerance(5);
 		setOutputRange(-1.0, 1.0);
@@ -67,7 +63,5 @@ public class Elevator extends PIDSubsystem {
 	}
 
 	@Override
-	protected void initDefaultCommand() {
-		setDefaultCommand(new BrakeElevatorCommand());
-	}
+	protected void initDefaultCommand() { }
 }

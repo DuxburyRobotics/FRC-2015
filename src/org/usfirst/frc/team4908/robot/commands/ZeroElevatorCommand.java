@@ -7,16 +7,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ZeroElevatorCommand extends Command {
 	
+	private double power;
+	
 	public ZeroElevatorCommand() {
 		super("Zero Elevator");
 		
+		this.power = 0.2;
+		requires(Robot.elevator);
+	}
+	
+	public ZeroElevatorCommand(double power) {
+		super("Zero Elevator");
+		
+		this.power = power;
 		requires(Robot.elevator);
 	}
 
 	@Override
 	protected void initialize() {
 		if (!Robot.elevator.isZeroed()) {	//Probably overkill, but I'd rather not take the risk
-			Robot.elevator.setElevatorPower(0.1);	//TODO: Extract to constant
+			Robot.elevator.setElevatorPower(power);	//TODO: Extract to constant
 		}
 	}
 

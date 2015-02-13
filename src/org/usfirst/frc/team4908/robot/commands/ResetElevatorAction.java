@@ -17,6 +17,6 @@ public class ResetElevatorAction extends CommandGroup {
 		requires(Robot.elevator);
 		
 		addSequential(new ZeroElevatorCommand());
-		addSequential(new PIDTestCommand(200.0));
+		addSequential(new PositionElevatorCommand(500));
 	}
 }

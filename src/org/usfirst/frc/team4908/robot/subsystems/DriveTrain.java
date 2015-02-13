@@ -24,7 +24,9 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void driveTeleop(Joystick joystick) {
-		dragonDrive.arcadeTwistDrive(joystick);
+		//dragonDrive.arcadeTwistDrive(joystick);
+		dragonDrive.negativeIntertiaDrive(joystick);
+		
 	}
 	
 	public void stopDriving() {
