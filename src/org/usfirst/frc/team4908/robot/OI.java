@@ -26,11 +26,10 @@ public class OI {
 	}
 	
 	public void mapButtons() {
-		RIGHT_STICK.setButton(1, new PositionElevatorCommand(500), ButtonState.PRESSED);
-		RIGHT_STICK.setButton(2, new ZeroElevatorCommand(0.3), ButtonState.PRESSED);
+		LEFT_STICK.setButton(1, new GrabGamePieceAction(), ButtonState.PRESSED);		//Grab a tote
+		LEFT_STICK.setButton(2, new ZeroElevatorCommand(0.35), ButtonState.PRESSED);		//Lower elevator to zero position
+		LEFT_STICK.setButton(3, new PositionElevatorCommand(800), ButtonState.PRESSED);	//Raise to maximum hight
 		
-		RIGHT_STICK.setButton(3, new PositionElevatorCommand(600), ButtonState.PRESSED);
-		RIGHT_STICK.setButton(4, new GrabGamePieceAction(), ButtonState.PRESSED);		
+		//LEFT_STICK.setButton(6, command, ButtonState.TOGGLE_PRESSED);
 	}
 }
-

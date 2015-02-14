@@ -28,6 +28,9 @@ public class ZeroElevatorCommand extends Command {
 		if (!Robot.elevator.isZeroed()) {	//Probably overkill, but I'd rather not take the risk
 			Robot.elevator.setElevatorPower(power);	//TODO: Extract to constant
 		}
+		
+		SmartDashboard.putBoolean("Zeroed!", false);
+		
 	}
 
 	@Override
@@ -46,6 +49,7 @@ public class ZeroElevatorCommand extends Command {
 		Robot.elevator.brakeElevator();
 		if (Robot.elevator.isZeroed()) {
 			Robot.elevator.resetElevator();
+			SmartDashboard.putBoolean("Zeroed!", true);
 		}
 	}
 

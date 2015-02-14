@@ -15,9 +15,10 @@ public class Elevator extends PIDSubsystem {
 	private final VictorSP elevatorDriveMotor2;
 	public final Encoder elevatorEncoder;	//TODO: Make private when done testing
 	private final DigitalInput bottomLimitSwitch;
+	private boolean overridden;
 	
 	public Elevator() {
-		super("Elevator", 0.007, 0.0001, 0.0);		//TODO: Tweak these values
+		super("Elevator", 0.007, 0.0002, 0.0);		//TODO: Tweak these values
 		
 		this.setAbsoluteTolerance(5);
 		setOutputRange(-1.0, 1.0);
@@ -29,6 +30,8 @@ public class Elevator extends PIDSubsystem {
 		elevatorEncoder.setSamplesToAverage(10);
 		
 		bottomLimitSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_LIMIT_PORT);
+		
+		overridden = false;
 		
 		resetElevator();
 	}
@@ -60,6 +63,18 @@ public class Elevator extends PIDSubsystem {
 	
 	public boolean isZeroed() {
 		return !bottomLimitSwitch.get();
+	}
+	
+	public boolean isOverridden() {
+		return overridden;
+	}
+	
+	public void override() {
+		overridden = true;
+	}
+	
+	public void returnIncrementalControl() {
+		overridden = false;
 	}
 
 	@Override

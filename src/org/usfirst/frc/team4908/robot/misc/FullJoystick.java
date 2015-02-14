@@ -13,7 +13,9 @@ public class FullJoystick {
 	public enum ButtonState {
 		PRESSED,
 		RELEASED,
-		HELD
+		HELD,
+		TOGGLE_PRESSED,
+		CANCEL_PRESSED
 	}
 
     private Joystick joystick;
@@ -59,6 +61,12 @@ public class FullJoystick {
             case HELD:
                 button.whileHeld(command);
                 break;
+            case TOGGLE_PRESSED:
+            	button.toggleWhenPressed(command);
+            	break;
+            case CANCEL_PRESSED:
+            	button.cancelWhenPressed(command);
+            	break;
         }  
     }
     
