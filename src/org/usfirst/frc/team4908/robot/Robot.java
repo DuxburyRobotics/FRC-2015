@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team4908.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,6 +25,8 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Elevator elevator;
 	public static Intake intake;
+	
+	private CameraServer camera;
 
 	//TODO: Replace with actual autonomous command
     private Command autonomousCommand;
@@ -37,6 +40,10 @@ public class Robot extends IterativeRobot {
     	elevator = new Elevator();
     	intake = new Intake();
 		oi = new OI();
+		
+		camera = CameraServer.getInstance(); 	//May need to be changed to cam1, etc
+		camera.setQuality(50);
+		camera.startAutomaticCapture("cam0");	//Add in smart dashboard
     }
 	
 	public void disabledPeriodic() {
