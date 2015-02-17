@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team4908.robot.commands.autonomous.DriveForwardCommand;
+import org.usfirst.frc.team4908.robot.commands.autonomous.AutonomousSequence;
 import org.usfirst.frc.team4908.robot.commands.elevator.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
@@ -27,68 +27,70 @@ public class Robot extends IterativeRobot {
 	public static ActiveIntake intake;
 	
 	private CameraServer camera;	
-	private DriveForwardCommand autonomousCommand;
+	private AutonomousSequence autoSequence;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+	@Override
     public void robotInit() {
     	driveTrain = new DriveTrain();
     	elevator = new Elevator();
     	intake = new ActiveIntake();
 		oi = new OI();
 		
-		camera = CameraServer.getInstance(); 	//May need to be changed to cam1, etc
+		camera = CameraServer.getInstance();
 		camera.setQuality(25);
-		camera.startAutomaticCapture("cam0");	//Add in smart dashboard
+		camera.startAutomaticCapture("cam0");
 		
-		autonomousCommand = new DriveForwardCommand(18.6);
+		autoSequence = new AutonomousSequence();
     }
 	
+    @Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
+    @Override
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null)
-        	autonomousCommand.start();
+        if (autoSequence != null)
+        	autoSequence.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
+    @Override
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    @Override
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) 
-        	autonomousCommand.cancel();
+        if (autoSequence != null) 
+        	autoSequence.cancel();
         
         elevator.resetElevator();
-        //ZeroElevatorCommand zero = new ZeroElevatorCommand();
-        //zero.start();
-        ResetElevatorAction reset = new ResetElevatorAction();
-        reset.start();
+        ResetElevatorAction resetElevator = new ResetElevatorAction();
+        resetElevator.start();
     }
 
     /**
      * This function is called when the disabled button is hit.
      * You can use it to reset subsystems before shutting down.
      */
+    @Override
     public void disabledInit() {
-    	//TODO: Lower elevator to ground
+    	elevator.brakeElevator();
+    	intake.stopIntakeMotors();
+    	driveTrain.stopDriving();
     }
 
     /**
      * This function is called periodically during operator control
      */
+    @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
@@ -96,6 +98,7 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during test mode
      */
+    @Override
     public void testPeriodic() {
         LiveWindow.run();
     }

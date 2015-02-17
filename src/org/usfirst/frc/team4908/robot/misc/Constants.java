@@ -40,4 +40,6 @@ public class Constants {
     //Intake
     public static final int LEFT_INTAKE_MOTOR_PORT = 0;
     public static final int RIGHT_INTAKE_MOTOR_PORT = 1;
+    
+    public static final int TOTE_LIMIT_PORT = 9;
 }

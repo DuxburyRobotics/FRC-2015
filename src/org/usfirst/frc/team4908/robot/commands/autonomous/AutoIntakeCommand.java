@@ -40,7 +40,7 @@ public class AutoIntakeCommand extends Command {
 	@Override
 	protected boolean isFinished() {
 		if (indefiniteIntake) {
-			//TODO: return ! tote limit switch status
+			return Robot.intake.containsTote();
 		}
 		
 		return this.isTimedOut();

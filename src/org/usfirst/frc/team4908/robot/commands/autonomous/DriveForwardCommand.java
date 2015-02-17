@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4908.robot.commands.autonomous;
 
 import org.usfirst.frc.team4908.robot.Robot;
+import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 
@@ -12,7 +13,7 @@ public class DriveForwardCommand extends PIDCommand {
 		super(0.01, 0.0, 0.0);
 		
 		this.distance = distance;
-		getPIDController().setAbsoluteTolerance(5);
+		getPIDController().setAbsoluteTolerance(Constants.DRIVE_ABSOLUTE_TOLERANCE);
 		getPIDController().setOutputRange(-1.0, 1.0);
 		requires(Robot.driveTrain);
 	}
