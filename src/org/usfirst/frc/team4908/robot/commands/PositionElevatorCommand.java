@@ -3,40 +3,33 @@ package org.usfirst.frc.team4908.robot.commands;
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PositionElevatorCommand extends Command {
+
+	private int desiredPostion;
 	
-	private int setpoint;
-	
-	public PositionElevatorCommand(int setpoint) {
-		super("Position Arms");
+	public PositionElevatorCommand(int desiredPosition) {
+		super("Position Elevator");
 		
-		this.setpoint = setpoint;
+		this.desiredPostion = desiredPosition;
 		requires(Robot.elevator);
 	}
-
+	
 	@Override
 	protected void initialize() {
-		Robot.elevator.setSetpoint(setpoint);
-		Robot.elevator.enable();
+		Robot.elevator.setDesiredPosition(desiredPostion);
 	}
 
 	@Override
-	protected void execute() {
-		SmartDashboard.putNumber("Elevator Height", Robot.elevator.elevatorEncoder.get());
-	}
+	protected void execute() { }
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	@Override
-	protected void end() {
-		Robot.elevator.disable();
-		Robot.elevator.brakeElevator();
-	}
+	protected void end() { }
 
 	@Override
 	protected void interrupted() {

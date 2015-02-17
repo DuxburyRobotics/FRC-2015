@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
-import org.usfirst.frc.team4908.robot.commands.PositionElevatorCommand;
+import org.usfirst.frc.team4908.robot.commands.ControlElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -15,6 +15,7 @@ public class Elevator extends PIDSubsystem {
 	public final Encoder elevatorEncoder;	//TODO: Make private when done testing
 	private final DigitalInput bottomLimitSwitch;
 	private final DigitalInput topLimitSwitch;
+	private int desiredPosition;
 	private boolean overridden;
 	
 	public Elevator() {
@@ -30,6 +31,8 @@ public class Elevator extends PIDSubsystem {
 		
 		bottomLimitSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_LIMIT_PORT);
 		topLimitSwitch = new DigitalInput(Constants.ELEVATOR_TOP_LIMIT_PORT);
+		
+		desiredPosition = 0;
 		
 		overridden = false;	//TODO: Do this
 		
@@ -71,6 +74,15 @@ public class Elevator extends PIDSubsystem {
 	
 	public boolean isOverridden() {
 		return overridden;
+	}
+	
+	public void setDesiredPosition(int desiredPosition) {
+		setSetpoint(desiredPosition);
+		this.desiredPosition = desiredPosition;
+	}
+	
+	public int getDesiredPosition() {
+		return desiredPosition;
 	}
 	
 	public void override() {

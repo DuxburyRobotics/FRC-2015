@@ -27,11 +27,7 @@ public class Robot extends IterativeRobot {
 	public static Elevator elevator;
 	public static ActiveIntake intake;
 	
-	private CameraServer camera;
-
-	//TODO: Replace with actual autonomous command
-    //private Command autonomousCommand;
-	
+	private CameraServer camera;	
 	private DriveForwardCommand autonomousCommand;
 
     /**

@@ -16,7 +16,6 @@ public class ResetElevatorAction extends CommandGroup {
 		super("Reset Elevator");
 		
 		requires(Robot.elevator);
-		
 		addSequential(new ZeroElevatorCommand(0.3));
 		addSequential(new PositionElevatorCommand(Constants.TOTE_CARRY_HEIGHT));
 	}

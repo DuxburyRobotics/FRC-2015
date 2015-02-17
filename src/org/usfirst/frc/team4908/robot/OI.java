@@ -2,7 +2,7 @@ package org.usfirst.frc.team4908.robot;
 
 import org.usfirst.frc.team4908.robot.commands.CalibrateElevatorCommand;
 import org.usfirst.frc.team4908.robot.commands.GrabGamePieceAction;
-import org.usfirst.frc.team4908.robot.commands.PositionElevatorCommand;
+import org.usfirst.frc.team4908.robot.commands.ControlElevatorCommand;
 import org.usfirst.frc.team4908.robot.commands.ZeroElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 import org.usfirst.frc.team4908.robot.misc.FullJoystick;
@@ -29,9 +29,9 @@ public class OI {
 	public void mapButtons() {
 		LEFT_STICK.setButton(1, new GrabGamePieceAction(), ButtonState.PRESSED);		//Grab a tote
 		LEFT_STICK.setButton(2, new ZeroElevatorCommand(0.35), ButtonState.PRESSED);		//Lower elevator to zero position
-		LEFT_STICK.setButton(3, new PositionElevatorCommand(650), ButtonState.PRESSED);	//Raise to maximum hight
+		//LEFT_STICK.setButton(3, new ControlElevatorCommand(650), ButtonState.PRESSED);	//Raise to maximum hight
 		
-		RIGHT_STICK.setButton(1, new CalibrateElevatorCommand(), ButtonState.PRESSED);
+		//RIGHT_STICK.setButton(1, new CalibrateElevatorCommand(), ButtonState.PRESSED);
 		
 		//LEFT_STICK.setButton(6, command, ButtonState.TOGGLE_PRESSED);
 	}
