@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
-import org.usfirst.frc.team4908.robot.commands.ControlElevatorCommand;
+import org.usfirst.frc.team4908.robot.commands.elevator.ControlElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;

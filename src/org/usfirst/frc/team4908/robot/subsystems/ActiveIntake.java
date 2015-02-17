@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
-import org.usfirst.frc.team4908.robot.commands.IntakeControlCommand;
+import org.usfirst.frc.team4908.robot.commands.intake.IntakeControlCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.command.Subsystem;

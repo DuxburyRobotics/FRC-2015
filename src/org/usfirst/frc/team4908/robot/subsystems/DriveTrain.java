@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
-import org.usfirst.frc.team4908.robot.commands.DriveCommand;
+import org.usfirst.frc.team4908.robot.commands.drivetrain.DriveCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 import org.usfirst.frc.team4908.robot.misc.DragonDrive;
 

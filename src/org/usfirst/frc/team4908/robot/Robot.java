@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team4908.robot.commands.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.commands.autonomous.DriveForwardCommand;
+import org.usfirst.frc.team4908.robot.commands.elevator.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
 import org.usfirst.frc.team4908.robot.subsystems.ActiveIntake;

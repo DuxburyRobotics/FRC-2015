@@ -1,21 +1,24 @@
-package org.usfirst.frc.team4908.robot.commands;
+package org.usfirst.frc.team4908.robot.commands.elevator;
 
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ControlElevatorCommand extends Command {
-	
-	public ControlElevatorCommand() {
-		super("Position Arms");
+//TODO: For testing only, remove when done
+
+public class CalibrateElevatorCommand extends Command {
+		
+	public CalibrateElevatorCommand() {
+		super("Calibrate Elevator");
 		
 		requires(Robot.elevator);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.elevator.enable();
+		SmartDashboard.putNumber("Elevator Height", Robot.elevator.elevatorEncoder.get());
+		Robot.elevator.setElevatorPower(-0.2);
 	}
 
 	@Override
@@ -25,12 +28,12 @@ public class ControlElevatorCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return Robot.elevator.isMaxedOut();
 	}
 
 	@Override
 	protected void end() {
-		Robot.elevator.disable();
+		Robot.elevator.brakeElevator();
 	}
 
 	@Override

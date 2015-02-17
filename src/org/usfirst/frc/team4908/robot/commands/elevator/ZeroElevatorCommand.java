@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4908.robot.commands;
+package org.usfirst.frc.team4908.robot.commands.elevator;
 
 import org.usfirst.frc.team4908.robot.Robot;
 
@@ -7,13 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ZeroElevatorCommand extends Command {
 	
 	private double power;
-	
-	public ZeroElevatorCommand() {
-		super("Zero Elevator");
-		
-		this.power = 0.2;
-		requires(Robot.elevator);
-	}
 	
 	public ZeroElevatorCommand(double power) {
 		super("Zero Elevator");
