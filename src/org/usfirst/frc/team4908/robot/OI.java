@@ -1,8 +1,6 @@
 package org.usfirst.frc.team4908.robot;
 
-import org.usfirst.frc.team4908.robot.commands.CalibrateElevatorCommand;
 import org.usfirst.frc.team4908.robot.commands.GrabGamePieceAction;
-import org.usfirst.frc.team4908.robot.commands.ControlElevatorCommand;
 import org.usfirst.frc.team4908.robot.commands.ZeroElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 import org.usfirst.frc.team4908.robot.misc.FullJoystick;

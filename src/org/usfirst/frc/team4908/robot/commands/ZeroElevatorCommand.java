@@ -3,7 +3,6 @@ package org.usfirst.frc.team4908.robot.commands;
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ZeroElevatorCommand extends Command {
 	
@@ -25,19 +24,14 @@ public class ZeroElevatorCommand extends Command {
 
 	@Override
 	protected void initialize() {
-		if (!Robot.elevator.isZeroed()) {	//Probably overkill, but I'd rather not take the risk
+		if (!Robot.elevator.isZeroed()) {
 			Robot.elevator.setSetpoint(0.0);
-			Robot.elevator.setElevatorPower(power);	//TODO: Extract to constant
-		}
-		
-		//SmartDashboard.putBoolean("Zeroed!", false);
+			Robot.elevator.setElevatorPower(power);
+		}		
 	}
 
 	@Override
-	protected void execute() { 
-		//SmartDashboard.putBoolean("Switch", Robot.elevator.isZeroed());
-		//SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
-	}
+	protected void execute() { }
 
 	@Override
 	protected boolean isFinished() {
@@ -49,7 +43,6 @@ public class ZeroElevatorCommand extends Command {
 		Robot.elevator.brakeElevator();
 		if (Robot.elevator.isZeroed()) {
 			Robot.elevator.resetElevator();
-			//SmartDashboard.putBoolean("Zeroed!", true);
 		}
 	}
 

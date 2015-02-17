@@ -95,6 +95,6 @@ public class Elevator extends PIDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new PositionElevatorCommand(0));
+		setDefaultCommand(new ControlElevatorCommand());
 	}
 }
