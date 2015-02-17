@@ -2,24 +2,22 @@ package org.usfirst.frc.team4908.robot.commands;
 
 import org.usfirst.frc.team4908.robot.Robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class PositionElevatorCommand extends Command {
-	
-	private int setpoint;
-	
-	public PositionElevatorCommand(int setpoint) {
-		super("Position Arms");
+public class CalibrateElevatorCommand extends Command {
 		
-		this.setpoint = setpoint;
+	public CalibrateElevatorCommand() {
+		super("Calibrate Elevator");
+		
 		requires(Robot.elevator);
 	}
 
 	@Override
 	protected void initialize() {
-		Robot.elevator.setSetpoint(setpoint);
-		Robot.elevator.enable();
+		SmartDashboard.putNumber("Elevator Height", Robot.elevator.elevatorEncoder.get());
+		Robot.elevator.setElevatorPower(-0.2);
 	}
 
 	@Override
@@ -29,12 +27,11 @@ public class PositionElevatorCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return Robot.elevator.isMaxedOut();
 	}
 
 	@Override
 	protected void end() {
-		Robot.elevator.disable();
 		Robot.elevator.brakeElevator();
 	}
 

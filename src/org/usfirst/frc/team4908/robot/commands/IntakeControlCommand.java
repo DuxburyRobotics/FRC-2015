@@ -6,9 +6,9 @@ import org.usfirst.frc.team4908.robot.Robot;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ArmControlCommand extends Command {
+public class IntakeControlCommand extends Command {
 	
-	public ArmControlCommand() {
+	public IntakeControlCommand() {
 		super("Intake");
 		requires(Robot.intake);
 	}
@@ -18,7 +18,7 @@ public class ArmControlCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.intake.rollIntakeWheels(OI.LEFT_STICK.getJoystick().getAxis(AxisType.kY));
+		Robot.intake.setIntakePower(OI.LEFT_STICK.getJoystick().getAxis(AxisType.kY));
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class ArmControlCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.intake.stopArmMotors();
+		Robot.intake.stopIntakeMotors();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4908.robot.subsystems;
 
+import org.usfirst.frc.team4908.robot.commands.PositionElevatorCommand;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -9,29 +10,28 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class Elevator extends PIDSubsystem {
 	
-	//TODO: We need two limit switches at either end of the lift to zero out the encoders
-
 	private final VictorSP elevatorDriveMotor1;
 	private final VictorSP elevatorDriveMotor2;
 	public final Encoder elevatorEncoder;	//TODO: Make private when done testing
 	private final DigitalInput bottomLimitSwitch;
+	private final DigitalInput topLimitSwitch;
 	private boolean overridden;
 	
 	public Elevator() {
-		super("Elevator", 0.007, 0.0002, 0.0);		//TODO: Tweak these values
+		super("Elevator", 0.005, 0.0001, 0.0001);
 		
-		this.setAbsoluteTolerance(5);
+		setAbsoluteTolerance(Constants.ELEVATOR_ABSOLUTE_TOLERANCE);
 		setOutputRange(-1.0, 1.0);
 		
 		elevatorDriveMotor1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
 		elevatorDriveMotor2 = new VictorSP(Constants.ELEVATOR_DRIVE_RMOTOR_PORT);
 		
-		elevatorEncoder = new Encoder(Constants.ENCODER_A, Constants.ENCODER_B, false, Encoder.EncodingType.k4X);
-		elevatorEncoder.setSamplesToAverage(10);
+		elevatorEncoder = new Encoder(Constants.ELEVATOR_ENCODER_A_PORT, Constants.ELEVATOR_ENCODER_B_PORT, false, Encoder.EncodingType.k4X);
 		
 		bottomLimitSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_LIMIT_PORT);
+		topLimitSwitch = new DigitalInput(Constants.ELEVATOR_TOP_LIMIT_PORT);
 		
-		overridden = false;
+		overridden = false;	//TODO: Do this
 		
 		resetElevator();
 	}
@@ -65,6 +65,10 @@ public class Elevator extends PIDSubsystem {
 		return !bottomLimitSwitch.get();
 	}
 	
+	public boolean isMaxedOut() {
+		return !topLimitSwitch.get();
+	}
+	
 	public boolean isOverridden() {
 		return overridden;
 	}
@@ -78,5 +82,7 @@ public class Elevator extends PIDSubsystem {
 	}
 
 	@Override
-	protected void initDefaultCommand() { }
+	protected void initDefaultCommand() {
+		//setDefaultCommand(new PositionElevatorCommand(0));
+	}
 }

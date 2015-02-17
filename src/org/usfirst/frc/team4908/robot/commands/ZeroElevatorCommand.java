@@ -26,17 +26,17 @@ public class ZeroElevatorCommand extends Command {
 	@Override
 	protected void initialize() {
 		if (!Robot.elevator.isZeroed()) {	//Probably overkill, but I'd rather not take the risk
+			Robot.elevator.setSetpoint(0.0);
 			Robot.elevator.setElevatorPower(power);	//TODO: Extract to constant
 		}
 		
-		SmartDashboard.putBoolean("Zeroed!", false);
-		
+		//SmartDashboard.putBoolean("Zeroed!", false);
 	}
 
 	@Override
 	protected void execute() { 
-		SmartDashboard.putBoolean("Switch", Robot.elevator.isZeroed());
-		SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
+		//SmartDashboard.putBoolean("Switch", Robot.elevator.isZeroed());
+		//SmartDashboard.putNumber("Encoder Count", Robot.elevator.elevatorEncoder.get());
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class ZeroElevatorCommand extends Command {
 		Robot.elevator.brakeElevator();
 		if (Robot.elevator.isZeroed()) {
 			Robot.elevator.resetElevator();
-			SmartDashboard.putBoolean("Zeroed!", true);
+			//SmartDashboard.putBoolean("Zeroed!", true);
 		}
 	}
 

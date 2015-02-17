@@ -8,9 +8,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team4908.robot.commands.ResetElevatorAction;
+import org.usfirst.frc.team4908.robot.commands.autonomous.DriveForwardCommand;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
-import org.usfirst.frc.team4908.robot.subsystems.Intake;
+import org.usfirst.frc.team4908.robot.subsystems.ActiveIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,12 +25,14 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Elevator elevator;
-	public static Intake intake;
+	public static ActiveIntake intake;
 	
 	private CameraServer camera;
 
 	//TODO: Replace with actual autonomous command
-    private Command autonomousCommand;
+    //private Command autonomousCommand;
+	
+	private DriveForwardCommand autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -38,12 +41,14 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	driveTrain = new DriveTrain();
     	elevator = new Elevator();
-    	intake = new Intake();
+    	intake = new ActiveIntake();
 		oi = new OI();
 		
 		camera = CameraServer.getInstance(); 	//May need to be changed to cam1, etc
-		camera.setQuality(50);
+		camera.setQuality(25);
 		camera.startAutomaticCapture("cam0");	//Add in smart dashboard
+		
+		autonomousCommand = new DriveForwardCommand(18.6);
     }
 	
 	public void disabledPeriodic() {

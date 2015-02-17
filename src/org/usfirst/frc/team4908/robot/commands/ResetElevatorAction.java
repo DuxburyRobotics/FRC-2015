@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4908.robot.commands;
 
 import org.usfirst.frc.team4908.robot.Robot;
+import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -17,6 +18,6 @@ public class ResetElevatorAction extends CommandGroup {
 		requires(Robot.elevator);
 		
 		addSequential(new ZeroElevatorCommand(0.3));
-		addSequential(new PositionElevatorCommand(500));
+		addSequential(new PositionElevatorCommand(Constants.TOTE_CARRY_HEIGHT));
 	}
 }
