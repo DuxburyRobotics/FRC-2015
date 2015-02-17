@@ -19,7 +19,7 @@ public class Elevator extends PIDSubsystem {
 	private boolean overridden;
 	
 	public Elevator() {
-		super("Elevator", 0.005, 0.0001, 0.0001);
+		super("Elevator", Constants.ELEVATOR_P, Constants.ELEVATOR_I, Constants.ELEVATOR_D);
 		
 		setAbsoluteTolerance(Constants.ELEVATOR_ABSOLUTE_TOLERANCE);
 		setOutputRange(-1.0, 1.0);
@@ -27,7 +27,11 @@ public class Elevator extends PIDSubsystem {
 		elevatorDriveMotor1 = new VictorSP(Constants.ELEVATOR_DRIVE_LMOTOR_PORT);
 		elevatorDriveMotor2 = new VictorSP(Constants.ELEVATOR_DRIVE_RMOTOR_PORT);
 		
-		elevatorEncoder = new Encoder(Constants.ELEVATOR_ENCODER_A_PORT, Constants.ELEVATOR_ENCODER_B_PORT, false, Encoder.EncodingType.k4X);
+		elevatorEncoder = new Encoder(
+				Constants.ELEVATOR_ENCODER_A_PORT, 
+				Constants.ELEVATOR_ENCODER_B_PORT, 
+				false, 
+				Encoder.EncodingType.k4X);
 		
 		bottomLimitSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_LIMIT_PORT);
 		topLimitSwitch = new DigitalInput(Constants.ELEVATOR_TOP_LIMIT_PORT);

@@ -10,7 +10,7 @@ public class DriveForwardCommand extends PIDCommand {
 	private double distance;
 
 	public DriveForwardCommand(double distance) {
-		super(0.01, 0.0, 0.0);
+		super(Constants.DRIVE_P, Constants.DRIVE_I, Constants.DRIVE_D);
 		
 		this.distance = distance;
 		getPIDController().setAbsoluteTolerance(Constants.DRIVE_ABSOLUTE_TOLERANCE);
