@@ -32,12 +32,14 @@ public class DriveTrain extends Subsystem {
 				Constants.DRIVE_ENCODER_LEFT_B_PORT, 
 				false, 
 				Encoder.EncodingType.k4X);
+		leftEncoder.setSamplesToAverage(127);
 		
 		rightEncoder = new Encoder(
 				Constants.DRIVE_ENCODER_RIGHT_A_PORT,
 				Constants.DRIVE_ENCODER_RIGHT_B_PORT, 
 				false, 
 				Encoder.EncodingType.k4X);
+		rightEncoder.setSamplesToAverage(127);
 	}
 	
 	public void driveTeleop(Joystick joystick) {
@@ -52,8 +54,14 @@ public class DriveTrain extends Subsystem {
 	
 	public int convertToPulses(float distance) {
 		float revs = distance / (6.0f * (float)Math.PI);
-		float pulses = revs * 1440.0f;
-		return Math.round(pulses);
+		float pulses = revs * 1440.0f;		
+		return (int)pulses;
+	}
+	
+	public double convertToInches(int pulses) {
+		double revs = pulses / 1440.0;
+		double d = revs * (6.0 * Math.PI);
+		return d;
 	}
 	
 	public void resetDriveEncoders() {
@@ -71,6 +79,10 @@ public class DriveTrain extends Subsystem {
 	
 	public void setDrivePower(double pidValue) {
 		dragonDrive.setLeftRightMotorOutputs(pidValue, pidValue);
+	}
+	
+	public void setDrivePower(double left, double right) {
+		dragonDrive.setLeftRightMotorOutputs(left, right);
 	}
 	
 	@Override

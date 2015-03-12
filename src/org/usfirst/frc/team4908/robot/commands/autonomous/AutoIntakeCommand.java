@@ -31,7 +31,7 @@ public class AutoIntakeCommand extends Command {
 			setTimeout(timeInterval);
 		}
 		
-		Robot.intake.setIntakePower(-1.0);
+		Robot.intake.setIntakePower(1.0);
 	}
 
 	@Override

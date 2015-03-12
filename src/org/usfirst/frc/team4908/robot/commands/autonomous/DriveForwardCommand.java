@@ -4,6 +4,7 @@ import org.usfirst.frc.team4908.robot.Robot;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForwardCommand extends PIDCommand {
 	
@@ -12,7 +13,7 @@ public class DriveForwardCommand extends PIDCommand {
 	public DriveForwardCommand(double distance) {
 		super(Constants.DRIVE_P, Constants.DRIVE_I, Constants.DRIVE_D);
 		
-		this.distance = distance;
+		this.distance = Robot.driveTrain.convertToPulses((float)distance); //distance;
 		getPIDController().setAbsoluteTolerance(Constants.DRIVE_ABSOLUTE_TOLERANCE);
 		getPIDController().setOutputRange(-1.0, 1.0);
 		requires(Robot.driveTrain);
@@ -20,7 +21,7 @@ public class DriveForwardCommand extends PIDCommand {
 
 	@Override
 	protected double returnPIDInput() {
-		return (Robot.driveTrain.getLeftEncoder().get() + Robot.driveTrain.getRightEncoder().get()) / 2.0;
+		return (Math.abs(Robot.driveTrain.getLeftEncoder().get()) + Math.abs(Robot.driveTrain.getRightEncoder().get())) / 2.0;
 	}
 
 	@Override
@@ -36,7 +37,9 @@ public class DriveForwardCommand extends PIDCommand {
 	}
 
 	@Override
-	protected void execute() { }
+	protected void execute() { 
+		SmartDashboard.putNumber("Distance Driven", (Math.abs(Robot.driveTrain.getLeftEncoder().get()) + Math.abs(Robot.driveTrain.getRightEncoder().get())) / 2.0);
+	}
 
 	@Override
 	protected boolean isFinished() {

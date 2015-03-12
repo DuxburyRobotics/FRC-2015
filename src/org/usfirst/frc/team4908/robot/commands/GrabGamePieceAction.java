@@ -13,7 +13,7 @@ public class GrabGamePieceAction extends CommandGroup {
 		super("Grab Game Piece");
 		
 		requires(Robot.elevator);
-		addSequential(new ZeroElevatorCommand(0.3));
+		addSequential(new ZeroElevatorCommand(0.4));
 		addSequential(new PositionElevatorCommand(Constants.TOTE_CARRY_HEIGHT));
 	}
 }

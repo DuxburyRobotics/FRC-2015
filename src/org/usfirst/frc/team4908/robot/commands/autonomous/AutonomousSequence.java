@@ -19,13 +19,16 @@ public class AutonomousSequence extends CommandGroup {
 		 * 6. Eject tote from robot using intakes
 		 */
 		
-		addParallel(new DriveForwardCommand(18.6));
-		addParallel(new AutoIntakeCommand(5.0));
+		addParallel(new DriveForwardCommand(5.0));
+		addSequential(new AutoIntakeCommand(2.0));
 		addSequential(new MaxElevatorCommand(0.4));
 		
-//		addParallel(new DriveForwardCommand(-1.0));
-//		addParallel(new AutoIntakeCommand());
+		addParallel(new DriveForwardCommand(8.0));
+		addSequential(new AutoIntakeCommand());
 		
+		addSequential(new TurnCommand());
 		
+		addSequential(new DriveForwardCommand(20.0));
+		//addSequential();
 	}
 }

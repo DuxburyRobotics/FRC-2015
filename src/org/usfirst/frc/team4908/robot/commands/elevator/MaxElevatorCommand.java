@@ -33,6 +33,7 @@ public class MaxElevatorCommand extends Command {
 	@Override
 	protected void end() {
 		Robot.elevator.brakeElevator();
+		Robot.elevator.setSetpoint(Robot.elevator.elevatorEncoder.get());
 	}
 
 	@Override

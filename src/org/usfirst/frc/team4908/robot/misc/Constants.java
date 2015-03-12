@@ -10,9 +10,9 @@ public class Constants {
 	public static final int LEFT_MOTOR_PORT = 4;
 	public static final int RIGHT_MOTOR_PORT = 5;
 	
-	public static final double DRIVE_P = 0.01;
-	public static final double DRIVE_I = 0.0;
-	public static final double DRIVE_D = 0.0;
+	public static final double DRIVE_P = 0.0007;
+	public static final double DRIVE_I = 0.000001;
+	public static final double DRIVE_D = 0.00001;
 	
 	public static final int DRIVE_ENCODER_LEFT_A_PORT = 4;
 	public static final int DRIVE_ENCODER_LEFT_B_PORT = 5;
@@ -34,7 +34,7 @@ public class Constants {
     
     public static final double ELEVATOR_P = 0.005;
     public static final double ELEVATOR_I = 0.0001;
-    public static final double ELEVATOR_D = 0.0001;
+    public static final double ELEVATOR_D = 0.0002;
     
     public static final double ELEVATOR_DRIVE_MULTIPLIER = 1.0;
     
@@ -49,5 +49,5 @@ public class Constants {
     public static final int LEFT_INTAKE_MOTOR_PORT = 0;
     public static final int RIGHT_INTAKE_MOTOR_PORT = 1;
     
-    public static final int TOTE_LIMIT_PORT = 9;
+    public static final int TOTE_LIMIT_PORT = 7;
 }
