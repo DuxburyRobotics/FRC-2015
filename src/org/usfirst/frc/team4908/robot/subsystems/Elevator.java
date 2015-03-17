@@ -31,6 +31,7 @@ public class Elevator extends PIDSubsystem {
 				Constants.ELEVATOR_ENCODER_B_PORT, 
 				false, 
 				Encoder.EncodingType.k4X);
+		//elevatorEncoder.setSamplesToAverage(127); TODO: TEST THIS!
 		
 		bottomLimitSwitch = new DigitalInput(Constants.ELEVATOR_BOTTOM_LIMIT_PORT);
 		topLimitSwitch = new DigitalInput(Constants.ELEVATOR_TOP_LIMIT_PORT);

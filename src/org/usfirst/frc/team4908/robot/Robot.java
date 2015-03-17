@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team4908.robot;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoBinGrab;
 import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoForward;
 import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoStationary;
-//import org.usfirst.frc.team4908.robot.commands.elevator.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
 import org.usfirst.frc.team4908.robot.subsystems.ActiveIntake;
@@ -29,7 +27,6 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Elevator elevator;
 	public static ActiveIntake intake;
-	private boolean pressed;
 			
 	//private CameraServer camera;	
 	private Command autoSequence;
@@ -44,9 +41,7 @@ public class Robot extends IterativeRobot {
     	elevator = new Elevator();
     	intake = new ActiveIntake();
 		oi = new OI();
-		
-		pressed = false;
-		
+				
 		AutoChooser.getChooser().addSequence(new AutoForward());
 		AutoChooser.getChooser().addSequence(new AutoStationary());
 		AutoChooser.getChooser().addSequence(new AutoBinGrab());
@@ -61,20 +56,11 @@ public class Robot extends IterativeRobot {
     @Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		
-		//Poll for autonomous change
-		if (OI.LEFT_STICK.getButton(8).get() && !pressed) {
-			AutoChooser.getChooser().cycleCommands();
-			SmartDashboard.putString("AUTO", AutoChooser.getChooser().getCurrentSequence().getName());
-			pressed = true;
-		} else if (!OI.LEFT_STICK.getButton(8).get() && pressed) { 
-			pressed = false;
-		}
+		AutoChooser.getChooser().update();
 	}
 
     @Override
     public void autonomousInit() {
-    	driveTrain.setDrivePower(0.0, 0.0);
         autoSequence = AutoChooser.getChooser().getCurrentSequence();
         autoSequence.start();
     }
@@ -91,8 +77,6 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autoSequence != null) 
         	autoSequence.cancel();
-        
-        driveTrain.setDrivePower(0.0, 0.0);
     }
 
     /**
