@@ -70,6 +70,11 @@ public class FullJoystick {
         }  
     }
     
+    public void createButton(int buttonIndex) {
+    	SmartButton button = new SmartButton(getJoystick(), buttonIndex);
+    	buttons.add(button);
+    }
+    
     public SmartButton getButton(int index) {
     	for (SmartButton button : buttons) {
     		if (button.getButtonIndex() == index)

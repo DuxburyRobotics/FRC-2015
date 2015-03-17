@@ -37,9 +37,7 @@ public class DriveForwardCommand extends PIDCommand {
 	}
 
 	@Override
-	protected void execute() { 
-		SmartDashboard.putNumber("Distance Driven", (Math.abs(Robot.driveTrain.getLeftEncoder().get()) + Math.abs(Robot.driveTrain.getRightEncoder().get())) / 2.0);
-	}
+	protected void execute() { }
 
 	@Override
 	protected boolean isFinished() {

@@ -3,27 +3,44 @@ package org.usfirst.frc.team4908.robot.commands.autonomous;
 import org.usfirst.frc.team4908.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TurnCommand extends Command {
 	
-	public TurnCommand() {
+	public enum Direction {
+		CLOCKWISE,
+		COUNTER_CLOCKWISE
+	}
+	
+	double leftPower = 0.0;
+	double rightPower = 0.0;
+		
+	public TurnCommand(Direction direction) {
 		super("Turn");
 		
 		requires(Robot.driveTrain);
+		
+		switch (direction) {
+			case CLOCKWISE:
+				leftPower = 0.5;
+				rightPower = -0.5;
+				break;
+			
+			case COUNTER_CLOCKWISE:
+				leftPower = -0.5;
+				rightPower = 0.5;
+				break;
+		}
 	}
 
 	@Override
 	protected void initialize() {
 		Robot.driveTrain.resetDriveEncoders();
-		Robot.driveTrain.setDrivePower(0.5, -0.5);
+		Robot.driveTrain.setDrivePower(leftPower, rightPower);
 	}
 
 	@Override
 	protected void execute() {
-		Robot.driveTrain.setDrivePower(0.5, -0.5);
-
-		SmartDashboard.putNumber("TURN", Robot.driveTrain.getRightEncoder().get());
+		Robot.driveTrain.setDrivePower(leftPower, rightPower);
 	}
 
 	@Override

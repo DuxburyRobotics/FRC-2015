@@ -3,10 +3,14 @@ package org.usfirst.frc.team4908.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team4908.robot.commands.autonomous.AutonomousSequence;
+import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoBinGrab;
+import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoForward;
+import org.usfirst.frc.team4908.robot.commands.autonomous.sequences.AutoStationary;
 //import org.usfirst.frc.team4908.robot.commands.elevator.ResetElevatorAction;
 import org.usfirst.frc.team4908.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4908.robot.subsystems.Elevator;
@@ -25,9 +29,10 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Elevator elevator;
 	public static ActiveIntake intake;
-	
-	private CameraServer camera;	
-	private AutonomousSequence autoSequence;
+	private boolean pressed;
+			
+	//private CameraServer camera;	
+	private Command autoSequence;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -40,22 +45,38 @@ public class Robot extends IterativeRobot {
     	intake = new ActiveIntake();
 		oi = new OI();
 		
-		camera = CameraServer.getInstance();
-		camera.setQuality(25);
-		camera.startAutomaticCapture("cam0");
+		pressed = false;
 		
-		autoSequence = new AutonomousSequence();
+		AutoChooser.getChooser().addSequence(new AutoForward());
+		AutoChooser.getChooser().addSequence(new AutoStationary());
+		AutoChooser.getChooser().addSequence(new AutoBinGrab());
+		
+		SmartDashboard.putString("AUTO", AutoChooser.getChooser().getCurrentSequence().getName());
+		
+		//camera = CameraServer.getInstance();
+		//camera.setQuality(25);
+		//camera.startAutomaticCapture("cam0");
     }
-	
+		
     @Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		
+		//Poll for autonomous change
+		if (OI.LEFT_STICK.getButton(8).get() && !pressed) {
+			AutoChooser.getChooser().cycleCommands();
+			SmartDashboard.putString("AUTO", AutoChooser.getChooser().getCurrentSequence().getName());
+			pressed = true;
+		} else if (!OI.LEFT_STICK.getButton(8).get() && pressed) { 
+			pressed = false;
+		}
 	}
 
     @Override
     public void autonomousInit() {
-        if (autoSequence != null)
-        	autoSequence.start();
+    	driveTrain.setDrivePower(0.0, 0.0);
+        autoSequence = AutoChooser.getChooser().getCurrentSequence();
+        autoSequence.start();
     }
 
     /**
@@ -71,9 +92,7 @@ public class Robot extends IterativeRobot {
         if (autoSequence != null) 
         	autoSequence.cancel();
         
-        //elevator.resetElevator();
-        //ResetElevatorAction resetElevator = new ResetElevatorAction();
-        //resetElevator.start();
+        driveTrain.setDrivePower(0.0, 0.0);
     }
 
     /**

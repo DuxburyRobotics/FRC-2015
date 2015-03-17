@@ -24,7 +24,7 @@ public class Constants {
     public static final double DRIVE_MAX_POWER = 1.0;
     public static final int INERTIAL_MULTIPLIER = 3;
     
-    public static final int DRIVE_ABSOLUTE_TOLERANCE = 5;
+    public static final int DRIVE_ABSOLUTE_TOLERANCE = 15;
         
     //Elevator
     public static final int ELEVATOR_DRIVE_LMOTOR_PORT = 2;
@@ -41,7 +41,7 @@ public class Constants {
     public static final int ELEVATOR_ENCODER_A_PORT = 0;
     public static final int ELEVATOR_ENCODER_B_PORT = 1;
     
-    public static final int TOTE_CARRY_HEIGHT = 650;
+    public static final int TOTE_CARRY_HEIGHT = 700;
     
     public static final int ELEVATOR_ABSOLUTE_TOLERANCE = 5;
     

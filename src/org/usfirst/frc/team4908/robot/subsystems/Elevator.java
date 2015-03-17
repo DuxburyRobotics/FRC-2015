@@ -16,7 +16,6 @@ public class Elevator extends PIDSubsystem {
 	private final DigitalInput bottomLimitSwitch;
 	private final DigitalInput topLimitSwitch;
 	private int desiredPosition;
-	private boolean overridden;
 	
 	public Elevator() {
 		super("Elevator", Constants.ELEVATOR_P, Constants.ELEVATOR_I, Constants.ELEVATOR_D);
@@ -37,9 +36,7 @@ public class Elevator extends PIDSubsystem {
 		topLimitSwitch = new DigitalInput(Constants.ELEVATOR_TOP_LIMIT_PORT);
 		
 		desiredPosition = 0;
-		
-		overridden = false;	//TODO: Do this
-		
+				
 		resetElevator();
 	}
 	
@@ -76,10 +73,6 @@ public class Elevator extends PIDSubsystem {
 		return !topLimitSwitch.get();
 	}
 	
-	public boolean isOverridden() {
-		return overridden;
-	}
-	
 	public void setDesiredPosition(int desiredPosition) {
 		setSetpoint(desiredPosition);
 		this.desiredPosition = desiredPosition;
@@ -87,14 +80,6 @@ public class Elevator extends PIDSubsystem {
 	
 	public int getDesiredPosition() {
 		return desiredPosition;
-	}
-	
-	public void override() {
-		overridden = true;
-	}
-	
-	public void returnIncrementalControl() {
-		overridden = false;
 	}
 
 	@Override
