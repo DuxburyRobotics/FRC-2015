@@ -29,7 +29,7 @@ public class OI {
 	public void mapButtons() {
 		LEFT_STICK.setButton(1, new GrabGamePieceAction(), ButtonState.PRESSED);		//Grab a tote
 		LEFT_STICK.setButton(2, new ZeroElevatorCommand(0.4), ButtonState.PRESSED);		//Lower elevator to zero position
-		LEFT_STICK.setButton(3, new MaxElevatorCommand(0.4), ButtonState.PRESSED);		//Raise to maximum height
+		LEFT_STICK.setButton(3, new MaxElevatorCommand(0.5), ButtonState.PRESSED);		//Raise to maximum height
 		
 		LEFT_STICK.setButton(4, new SkimStackCommand(), ButtonState.PRESSED);
 		LEFT_STICK.setButton(5, new MaxElevatorCommand(1.0), ButtonState.PRESSED);

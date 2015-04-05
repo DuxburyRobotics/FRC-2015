@@ -30,7 +30,13 @@ public class ControlElevatorCommand extends Command {
 			if (newPosition > 0 && !Robot.elevator.isZeroed()) {
 				Robot.elevator.setDesiredPosition(newPosition);
 			}
-		}		
+		}
+		
+		/*
+		if ((int)Robot.elevator.getSetpoint() == 0 && Robot.elevator.isZeroed()) {
+			Robot.elevator.brakeElevator();
+		}
+		*/
 	}
 
 	@Override

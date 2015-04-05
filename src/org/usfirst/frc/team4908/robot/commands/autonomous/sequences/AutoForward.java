@@ -11,6 +11,6 @@ public class AutoForward extends CommandGroup {
 		super("Drive Forward");
 		
 		addParallel(new ZeroElevatorCommand(0.3));
-		addParallel(new DriveForwardCommand(15.0));
+		addParallel(new DriveForwardCommand(23.0));
 	}
 }

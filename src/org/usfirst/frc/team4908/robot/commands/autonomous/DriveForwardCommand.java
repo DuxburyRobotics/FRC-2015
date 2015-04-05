@@ -4,6 +4,7 @@ import org.usfirst.frc.team4908.robot.Robot;
 import org.usfirst.frc.team4908.robot.misc.Constants;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveForwardCommand extends PIDCommand {
 	
@@ -16,6 +17,10 @@ public class DriveForwardCommand extends PIDCommand {
 		getPIDController().setAbsoluteTolerance(Constants.DRIVE_ABSOLUTE_TOLERANCE);
 		getPIDController().setOutputRange(-1.0, 1.0);
 		requires(Robot.driveTrain);
+				
+		SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder().get());
+		SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder().get());
+		SmartDashboard.putNumber("Distance", this.distance);
 	}
 
 	@Override
@@ -36,7 +41,12 @@ public class DriveForwardCommand extends PIDCommand {
 	}
 
 	@Override
-	protected void execute() { }
+	protected void execute() { 
+		SmartDashboard.putNumber("Left Encoder", Robot.driveTrain.getLeftEncoder().get());
+		SmartDashboard.putNumber("Right Encoder", Robot.driveTrain.getRightEncoder().get());
+		SmartDashboard.putNumber("Average", (Math.abs(Robot.driveTrain.getLeftEncoder().get()) + Math.abs(Robot.driveTrain.getRightEncoder().get())) / 2.0
+);
+	}
 
 	@Override
 	protected boolean isFinished() {
